@@ -1,10 +1,11 @@
 FROM quay.io/jupyter/minimal-notebook
 
+USER root
 RUN apt update \
 && apt install -y swi-prolog-nox \
 && rm -rf /var/lib/apt/lists/*
+USER $NB_UID
 
-USER root
 # hadolint ignore=DL3013
 RUN python3 -m pip install --no-cache-dir \
     dockerspawner \
@@ -13,5 +14,3 @@ RUN python3 -m pip install --no-cache-dir \
     nbgrader
 
 RUN python -m prolog_kernel.install
-
-USER $NB_UID
