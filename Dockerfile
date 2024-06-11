@@ -1,4 +1,4 @@
-FROM quay.io/repository/jupyter/minimal-notebook
+FROM quay.io/jupyter/minimal-notebook
 
 RUN apt update \
 && apt install -y swi-prolog-nox \
